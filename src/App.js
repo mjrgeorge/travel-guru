@@ -9,6 +9,9 @@ import {
 } from "react-router-dom";
 import Home from './home/Home';
 import NotMatch from './notMatch/NotMatch';
+import Book from './book/Book';
+import Login from './login/Login';
+import Room from './room/Room';
 
 function App() {
   return (
@@ -16,6 +19,15 @@ function App() {
       <Switch>
         <Route path = "/home">
           <Home/>
+        </Route>
+        <Route path = "/book">
+          <Book/>
+        </Route>
+        <Route path = "/login">
+          <Login/>
+        </Route>
+        <Route path = "/room">
+          <Room/>
         </Route>
         <Route exact path = "/">
           <Home/>
