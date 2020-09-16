@@ -8,9 +8,10 @@ import firebaseConfig from './firebaseConfig';
 firebase.initializeApp(firebaseConfig);
 
 const Login = () => {
-
+    const [newUser, setNewUser] = useState(false);
     const [user, setUser] = useState({
         isSignedIn: false,
+        newUser: false,
         name: '',
         firstName: '',
         lastName: '',
@@ -73,9 +74,25 @@ const Login = () => {
     };
 
     const handleSubmit = (e) => {
-        if(user.firstName&&user.lastName&&user.email&&user.password){
+        if(newUser&& user.firstName&&user.lastName&&user.email&&user.password){
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then(response=>{
+                const newUserInfo = {...user};
+                newUserInfo.error = '';
+                newUserInfo.success = true;
+                setUser(newUserInfo);
+            })
+            .catch(error=> {
+                const newUserInfo = {...user};
+                newUserInfo.error = error.message;
+                newUserInfo.success = false;
+                setUser(newUserInfo);
+              });
+        }
+
+        if(!newUser && user.email && user.password){
+            firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+            .then(response => {
                 const newUserInfo = {...user};
                 newUserInfo.error = '';
                 newUserInfo.success = true;
@@ -101,7 +118,7 @@ const Login = () => {
                 <h1>Email: {user.email} </h1>
                 <h1>Password: {user.password} </h1>
                 {
-                user.success && <p style={{color: 'green'}}> User Created Successfully</p>
+                user.success && <p style={{color: 'green'}}> User {newUser?'Created':'Logged In'} Successfully</p>
                 }
                 {
                 user.error && <p style={{color: 'red'}}> {user.error} </p>
@@ -114,7 +131,9 @@ const Login = () => {
                 </div>
                 : */}
                 <Card style={{width: '500px', padding: '25px', margin: '100px auto'}}>
-                {/* <div>
+                {
+                newUser?
+                <div>
                     <form>
                         <h3>Login</h3>
                         <br/>
@@ -124,17 +143,19 @@ const Login = () => {
                             <Form.Control type="password" placeholder = "Password"/>
                             <br/>
                             <div className="d-flex justify-content-between">
-                              <Form.Check type="checkbox" label="Remember Me" /><Link to="">Forgot Password</Link>
+                              <Form.Check type="checkbox" label="Remember Me" />
+                              <Button variant="link" >Forgot Password</Button>
                             </div>
                         </Form.Group>
-                        <Button variant="warning" block>Login</Button>
+                        <Button onClick={handleSubmit} variant="warning" block>Login</Button>
                         <br/>
-                        <div className="d-flex justify-content-center">
-                            <p className="pr-2">Don't have an account?</p> <Link to="">Create an account</Link>
+                        <div className="text-center">
+                            <p>Don't have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Create an account</Button></p>
                         </div>
                     </form>
-                </div> */}
-                <div>
+                </div>
+                :
+                    <div>
                     <Form>
                         <h3>Create an account</h3>
                         <br/>
@@ -151,9 +172,10 @@ const Login = () => {
                         </Form.Group>
                             <Button onClick={handleSubmit} variant="warning" type="submit" block>Create an account</Button>
                             <br/>
-                            <p className="text-center">Already have an account? <Link to="">Login</Link> </p>
+                            <p className="text-center">Already have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Login</Button></p>
                     </Form>
                 </div>
+                }
                 <div className="text-center">
                     <hr/>
                     <p>Or</p>
