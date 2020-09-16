@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Card, Form} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from './firebaseConfig';
+import { UserContext } from '../App';
+import { useHistory, useLocation } from 'react-router-dom';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -22,18 +23,17 @@ const Login = () => {
         error: '',
     });
 
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const handleSignIn =  () => {
-        firebase.auth().signInWithPopup(provider)
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+    const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
+
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    const handleGoogleSignedIn =  () => {
+        firebase.auth().signInWithPopup(googleProvider)
         .then(result =>{
-            const {displayName, email, photoURL} = result.user;
-            const signedInUser = {
-                isSignedIn: true,
-                name: displayName,
-                email: email,
-                photo: photoURL,
-            }
-            setUser(signedInUser);
+           console.log(result);
         })
           .catch(error=>{
               console.log(error);
@@ -101,7 +101,6 @@ const Login = () => {
                 console.log(error.message);
               });
         }
-
         if(!newUser && user.email && user.password){
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then(response => {
@@ -109,6 +108,8 @@ const Login = () => {
                 newUserInfo.error = '';
                 newUserInfo.success = true;
                 setUser(newUserInfo);
+                setLoggedInUser(newUserInfo);
+                history.replace(from);
             })
             .catch(error=> {
                 const newUserInfo = {...user};
@@ -126,9 +127,9 @@ const Login = () => {
 
         <div>
             <div>
-                <h1>Name: {user.firstName} {user.lastName}</h1>
-                <h1>Email: {user.email} </h1>
-                <h1>Password: {user.password} </h1>
+                <p>Name: {user.firstName} {user.lastName}</p>
+                <p>Email: {user.email} </p>
+                <p>Password: {user.password} </p>
                 <Button onClick={handleSignOut} variant="danger" block>Log Out</Button>
             </div>
 
@@ -162,7 +163,7 @@ const Login = () => {
                     <p>Or</p>
                     <Button onClick={handleFbSignedIn} variant="info" block>Continue With Facebook</Button>
                     <br/>
-                    <Button onClick={handleSignIn} variant="info" block>Continue With Google</Button>
+                    <Button onClick={handleGoogleSignedIn} variant="info" block>Continue With Google</Button>
                 </div>
             </Card>
         </div>

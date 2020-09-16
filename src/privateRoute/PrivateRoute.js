@@ -1,35 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { UserContext } from '../App';
 
-const PrivateRoute = () => {
+const PrivateRoute = ({ children, ...rest }) => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     return (
-        <div>
-            <h1>This is Private Route</h1>
-        </div>
+        <Route
+        {...rest}
+        render={({ location }) =>
+          loggedInUser.email ? (
+            children
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: location }
+              }}
+            />
+          )
+        }
+      />
     );
 };
 
 export default PrivateRoute;
-
-// let history = useHistory();
-//   let location = useLocation();
-
-//   let { from } = location.state || { from: { pathname: "/" } };
-// function PrivateRoute({ children, ...rest }) {
-//     return (
-//       <Route
-//         {...rest}
-//         render={({ location }) =>
-//           fakeAuth.isAuthenticated ? (
-//             children
-//           ) : (
-//             <Redirect
-//               to={{
-//                 pathname: "/login",
-//                 state: { from: location }
-//               }}
-//             />
-//           )
-//         }
-//       />
-//     );
-//   }
