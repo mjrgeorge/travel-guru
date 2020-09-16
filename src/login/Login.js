@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Card, Col, Form, Row } from 'react-bootstrap';
+import { Button, Card, Form} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-
 
 const Login = () => {
     return (
@@ -22,16 +21,16 @@ const Login = () => {
                         <Form.Control type="password" placeholder = "Confirm Password"/>
                         <br/>
                         <div className="d-flex justify-content-between">
-                            <Form.Check type="checkbox" label="Remember Me" />
-                            <Link>Forgot Password</Link>
+                            <Form.Check type="checkbox" label="Remember Me" /><Link>Forgot Password</Link>
                         </div>
                     </Form.Group>
                     <div className="text-center">
+                        <Button variant="warning" type="submit" block>Login</Button>
                         <Button variant="warning" type="submit" block>Create an account</Button>
                         <br/>
-                        <p>Already have an account? <Link>Login</Link> </p>
-                        <br/>
                         <p>Don't have an account? <Link>Create an account</Link> </p>
+                        <br/>
+                        <p>Already have an account? <Link>Login</Link> </p>
                         <hr/>
                         <p>Or</p>
                         <Button variant="info" block>Continue With Facebook</Button>

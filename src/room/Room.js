@@ -1,51 +1,46 @@
 import React from 'react';
+import RoomDetails from '../roomDetails/RoomDetails';
+import room1 from '../images/Image/room1.png';
+import room2 from '../images/Image/room2.png';
+import room3 from '../images/Image/room3.png';
+
+
 
 const Room = () => {
     const rooms = [
         {
-            title: 'Standard Single Room',
-            description: 'Standard Single Rooms are designed in open -concept living area and have many facilities.',
-            imgUrl: 'https://cdn.jumeirah.com/-/mediadh/dh/hospitality/jumeirah/offers/offer-images/burj-al-arab-presidential-suite-living-room-4-hero.jpg',
-            bed: 1,
-            capacity: 1,
-            bedType: 'Single',
-            avatar: 'S',
-            price: 119
+            id: `1`,
+            title: `Light bright airy stylish apt & safe peaceful stay`,
+            capacity: `4 guest 2 bedrooms 2 beds 2 baths`,
+            description: `Wifi conditioning Kitchen`,
+            facilities: `Cancellation flexibility available`,
+            others: `4.9(20) $34/night $167 total`,
+            img: `${room1}`,
         },
         {
-            title: 'Couple Power Room',
-            description: 'Superior Double Rooms are perfectly equipped for traveling couples or friends.',
-            imgUrl: 'https://cdn.jumeirah.com/-/mediadh/dh/hospitality/jumeirah/offers/offer-images/burj-al-arab-royal-suite-staircase-5-hero.jpg',
-            bed: 1,
-            capacity: 2,
-            bedType: 'Double',
-            avatar: 'D',
-            price: 149
+            id: `2`,
+            title: `Light bright airy stylish apt & safe peaceful stay`,
+            capacity: `4 guest 2 bedrooms 2 beds 2 baths`,
+            description: `Wifi conditioning Kitchen`,
+            facilities: `Cancellation flexibility available`,
+            others: `4.9(20) $34/night $167 total`,
+            img: `${room2}`,
         },
         {
-            title: 'Family Capacity Room',
-            description: ' Have lots of in-room facilities and are designed in open-concept living area.',
-            imgUrl: 'https://cdn.jumeirah.com/-/mediadh/dh/hospitality/jumeirah/hotels/dubai/burj-al-arab-jumeirah/room/presidential-two-bedroom-suite/burj-al-arab-presidential-suite-guest-bedroom_6-4_landscape/burj-al-arab-presidential-suite-guest-bedroom_16-9_landscape.jpg?w=2080',
-            bed: 2,
-            capacity: 4,
-            bedType: 'Family',
-            avatar: 'F',
-            price: 199
+            id: `3`,
+            title: `Light bright airy stylish apt & safe peaceful stay`,
+            capacity: `4 guest 2 bedrooms 2 beds 2 baths`,
+            description: `Wifi conditioning Kitchen`,
+            facilities: `Cancellation flexibility available`,
+            others: `4.9(20) $34/night $167 total`,
+            img: `${room3}`,
         }
     ];
     return (
-        <div className="row">
-            <div className="col-md-6">
-                <div className="r">
-                    <div className="col-md-6">
-                        <img src="" alt=""/>
-                    </div>
-                    <div className="col-md-6">
-
-                    </div>
-                </div>
-            </div>
-            <div className="col-md-6"></div>
+        <div>
+            {
+                rooms.map(room =><RoomDetails room={room} key={room.id}></RoomDetails>)
+            }
         </div>
     );
 };

@@ -1,11 +1,15 @@
 import React from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
-import Header from '../header/Header';
+import { useHistory } from 'react-router-dom';
 
 const Book = () => {
+    const history = useHistory();
+    const handleSubmit = () => {
+        const url = `/room`;
+        history.push(url);
+    }
     return (
         <div>
-            <Header></Header>
             <div className="row">
                 <div className="col-md-4 m-5 p-5">
                 <h2 className="display-4 text-dark">COX'S BAZAR</h2>
@@ -30,7 +34,7 @@ const Book = () => {
                                     </Col>
                                 </Row>
                             </Form.Group>
-                            <Button variant="warning" type="submit" block>Submit</Button>
+                            <Button onClick={handleSubmit} variant="warning" block>Start Booking</Button>
                         </Form>
                     </Card>
                 </div>
