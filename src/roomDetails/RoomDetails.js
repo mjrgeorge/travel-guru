@@ -14,6 +14,7 @@ const RoomDetails = (props) => {
                         <Card>
                             <Card.Body>
                                 <Card.Title>{title}</Card.Title>
+                                <Card.Text><small className="text-muted">{capacity}</small></Card.Text>
                                 <Card.Text>{description}</Card.Text>
                                 <Card.Text>{facilities}</Card.Text>
                                 <Card.Text><small className="text-muted">{facilities}</small></Card.Text>
