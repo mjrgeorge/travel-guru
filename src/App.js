@@ -9,12 +9,10 @@ import {
 } from "react-router-dom";
 import Home from './home/Home';
 import NotMatch from './notMatch/NotMatch';
-import Header from './header/Header';
 
 function App() {
   return (
     <Router>
-      <Header/>
       <Switch>
         <Route path = "/home">
           <Home/>

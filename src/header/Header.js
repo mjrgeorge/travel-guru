@@ -3,6 +3,7 @@ import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
 import './Header.css';
 import logo from '../images/Logo.png';
 import header from '../images/Image/header.png';
+import Location from '../location/Location';
 
 const Header = () => {
     return (
@@ -23,6 +24,7 @@ const Header = () => {
                     <Button className = "mr-5" variant="warning">Login</Button>
             </Navbar.Collapse>
         </Navbar>
+        <Location></Location>
         </div>
     );
 };
