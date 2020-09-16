@@ -74,7 +74,7 @@ const Login = () => {
     };
 
     const handleSubmit = (e) => {
-        if(newUser&& user.firstName&&user.lastName&&user.email&&user.password){
+        if(newUser && user.firstName && user.lastName && user.email && user.password){
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
             .then(response=>{
                 const newUserInfo = {...user};
@@ -87,6 +87,7 @@ const Login = () => {
                 newUserInfo.error = error.message;
                 newUserInfo.success = false;
                 setUser(newUserInfo);
+                console.log(error.message);
               });
         }
 
@@ -104,7 +105,7 @@ const Login = () => {
                 newUserInfo.success = false;
                 setUser(newUserInfo);
               });
-        }
+        };
 
         e.preventDefault();
     };
@@ -117,65 +118,33 @@ const Login = () => {
                 <h1>Name: {user.firstName} {user.lastName}</h1>
                 <h1>Email: {user.email} </h1>
                 <h1>Password: {user.password} </h1>
-                {
-                user.success && <p style={{color: 'green'}}> User {newUser?'Created':'Logged In'} Successfully</p>
-                }
-                {
-                user.error && <p style={{color: 'red'}}> {user.error} </p>
-                }
-
             </div>
-            {/* {user.isSignedIn?
+
+            <Card style={{width: '500px', padding: '25px', margin: '100px auto'}}>
                 <div>
-                    <Button onClick={handleSignOut} variant="warning" block>Log Out</Button>
-                </div>
-                : */}
-                <Card style={{width: '500px', padding: '25px', margin: '100px auto'}}>
-                {
-                newUser?
-                <div>
-                    <form>
-                        <h3>Login</h3>
-                        <br/>
-                        <Form.Group>
-                            <Form.Control type="email" placeholder = "Email"/>
-                            <br/>
-                            <Form.Control type="password" placeholder = "Password"/>
-                            <br/>
-                            <div className="d-flex justify-content-between">
-                              <Form.Check type="checkbox" label="Remember Me" />
-                              <Button variant="link" >Forgot Password</Button>
-                            </div>
-                        </Form.Group>
-                        <Button onClick={handleSubmit} variant="warning" block>Login</Button>
-                        <br/>
-                        <div className="text-center">
-                            <p>Don't have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Create an account</Button></p>
-                        </div>
-                    </form>
-                </div>
-                :
-                    <div>
                     <Form>
-                        <h3>Create an account</h3>
-                        <br/>
-                        <Form.Group>
-                            <Form.Control onBlur={handleBlur} name="firstName" type="text" placeholder = "First Name" required/>
-                            <br/>
-                            <Form.Control onBlur={handleBlur} name="lastName" type="text" placeholder = "Last Name" required/>
-                            <br/>
-                            <Form.Control onBlur={handleBlur} name="email" type="email" placeholder = "Email" required/>
-                            <br/>
-                            <Form.Control onBlur={handleBlur} name="password" type="password" placeholder = "Password" required/>
-                            {/* <br/>
-                            <Form.Control onBlur={handleBlur} name="" type="confirmPassword" placeholder = "Confirm Password" required/> */}
-                        </Form.Group>
-                            <Button onClick={handleSubmit} variant="warning" type="submit" block>Create an account</Button>
-                            <br/>
-                            <p className="text-center">Already have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Login</Button></p>
+                        <h3>{!newUser?'Login':'Create an account'}</h3>
+                            {newUser&&<Form.Control className="mb-3" onBlur={handleBlur} name="firstName" type="text" placeholder = "First Name" required/>}
+                            {newUser&&<Form.Control className="mb-3"  onBlur={handleBlur} name="lastName" type="text" placeholder = "Last Name" required/>}
+                            <Form.Control className="mb-3"  onBlur={handleBlur} name="email" type="email" placeholder = "Email" required/>
+                            <Form.Control className="mb-3"  onBlur={handleBlur} name="password" type="password" placeholder = "Password" required/>
+                            {!newUser&&
+                            <div className="d-flex justify-content-between">
+                                <Form.Check type="checkbox" label="Remember Me" />
+                                <Button variant="link" >Forgot Password</Button>
+                            </div>}
+
+                            {<Button onClick={handleSubmit} type="submit" variant="warning" block>{!newUser?'Login':'Create an account'}</Button>}
+                            
+                            {!newUser&&
+                            <div className="text-center">
+                            <p>Don't have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Create an account</Button></p>
+                            </div>}
+                            {newUser&&<p className="text-center">Already have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Login</Button></p>}
                     </Form>
+                            {user.success && <p className="text-center text-success"> User {newUser?'Created':'Logged In'} Successfully</p>}
+                            {user.error && <p className="text-center text-danger"> {user.error} </p>}
                 </div>
-                }
                 <div className="text-center">
                     <hr/>
                     <p>Or</p>
@@ -184,7 +153,6 @@ const Login = () => {
                     <Button onClick={handleSignIn} variant="info" block>Continue With Google</Button>
                 </div>
             </Card>
-            {/* } */}
         </div>
     );
 };
