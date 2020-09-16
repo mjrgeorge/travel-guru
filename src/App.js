@@ -1,14 +1,32 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { Button } from 'react-bootstrap';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Home from './home/Home';
+import NotMatch from './notMatch/NotMatch';
+import Header from './header/Header';
 
 function App() {
   return (
-    <div>
-      <h1 className = "bg-dark">Hello World!</h1>
-      <Button>Click me</Button>
-    </div>
+    <Router>
+      <Header/>
+      <Switch>
+        <Route path = "/home">
+          <Home/>
+        </Route>
+        <Route exact path = "/">
+          <Home/>
+        </Route>
+        <Route path = "*">
+          <NotMatch/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
