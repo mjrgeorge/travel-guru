@@ -40,6 +40,17 @@ const Login = () => {
           });
     };
 
+    const fbProvider = new firebase.auth.FacebookAuthProvider();
+    const handleFbSignedIn = ()=>{
+        firebase.auth().signInWithPopup(fbProvider)
+        .then(result =>{
+            console.log(result);
+        })
+          .catch(error=>{
+              console.log(error);
+          });
+    };
+
     const handleSignOut = () => {
         firebase.auth().signOut()
         .then(res=> {
@@ -118,6 +129,7 @@ const Login = () => {
                 <h1>Name: {user.firstName} {user.lastName}</h1>
                 <h1>Email: {user.email} </h1>
                 <h1>Password: {user.password} </h1>
+                <Button onClick={handleSignOut} variant="danger" block>Log Out</Button>
             </div>
 
             <Card style={{width: '500px', padding: '25px', margin: '100px auto'}}>
@@ -148,7 +160,7 @@ const Login = () => {
                 <div className="text-center">
                     <hr/>
                     <p>Or</p>
-                    <Button variant="info" block>Continue With Facebook</Button>
+                    <Button onClick={handleFbSignedIn} variant="info" block>Continue With Facebook</Button>
                     <br/>
                     <Button onClick={handleSignIn} variant="info" block>Continue With Google</Button>
                 </div>
