@@ -1,7 +1,7 @@
 import React from 'react';
 import './Location.css';
 import { Button, Carousel } from 'react-bootstrap';
-import coxbazar from '../../images/Image/Sajek.png';
+import coxbazar from '../../images/Image/coxbazar.png';
 import sreemongol from '../../images/Image/Sreemongol.png';
 import sundorbon from '../../images/Image/sundorbon.png';
 import { useHistory } from 'react-router-dom';
@@ -31,7 +31,7 @@ const Location = () => {
                     <div className="col-md-6">
                         <h2 className="display-2 text-white">COX'S BAZAR</h2>
                         <p className="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...</p>
-                        <Button onClick={handleCoxbazarBooking}  variant="warning">
+                        <Button onClick={handleCoxbazarBooking} variant="warning">
                             Booking 
                             <FontAwesomeIcon icon={faArrowRight}/>
                         </Button>
@@ -46,7 +46,7 @@ const Location = () => {
                     <div className="col-md-6">
                         <h2 className="display-2 text-white">SREEMANGAL</h2>
                         <p className="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...</p>
-                        <Button onClick={handleSreemangalBooking}  variant="warning">
+                        <Button onClick={handleSreemangalBooking} variant="warning">
                             Booking 
                             <FontAwesomeIcon icon={faArrowRight}/>
                         </Button>
@@ -61,7 +61,7 @@ const Location = () => {
                     <div className="col-md-6">
                         <h2 className="display-2 text-white">SUNDARBAN</h2>
                         <p className="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...</p>
-                        <Button onClick={handleSundarbanBooking}  variant="warning">
+                        <Button onClick={handleSundarbanBooking} variant="warning">
                             Booking 
                             <FontAwesomeIcon icon={faArrowRight}/>
                         </Button>

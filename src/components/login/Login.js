@@ -127,13 +127,6 @@ const Login = () => {
     return (
 
         <div>
-            <div>
-                <p>Name: {user.firstName} {user.lastName}</p>
-                <p>Email: {user.email} </p>
-                <p>Password: {user.password} </p>
-                <Button onClick={handleSignOut} variant="danger" block>Log Out</Button>
-            </div>
-
             <Card style={{width: '500px', padding: '25px', margin: '100px auto'}}>
                 <div>
                     <Form>

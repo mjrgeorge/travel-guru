@@ -13,7 +13,7 @@ import PrivateRoute from './components/privateRoute/PrivateRoute';
 import Room from './components/room/Room';
 import NotMatch from './components/notMatch/NotMatch';
 import Sundarban from './components/sundarban/Sundarban';
-import Sreemangal from './components/location/sreemangal/Sreemangal';
+import Sreemangal from './components/sreemangal/Sreemangal';
 
 
 export const UserContext = createContext();
@@ -22,8 +22,8 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
+      <h1>Email: {loggedInUser.email} </h1>
       <Router>
-        <h1>Email: {loggedInUser.email}</h1>
         <Switch>
           <Route path = "/home">
             <Home/>

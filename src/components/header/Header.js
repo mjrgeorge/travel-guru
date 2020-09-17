@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
-import './Header.css';
 import logo from '../../images/Logo.png';
 import header from '../../images/Image/header.png';
 import Location from '../../components/location/Location';
 
 const Header = () => {
     return (
-        <div style={{ backgroundImage: `url(${header})` }} className="header">
+        <div style={{ backgroundImage: `url(${header})`, height: '100vh', backgroundSize: '100% 100%', backgroundPosition: 'bottom'}}>
             <Navbar bg="transparent" variant = "light" expand="lg">
                 <Navbar.Brand href="home"><img src={logo} width="120px" height="60px" className="d-inline-block align-top ml-5" alt="logo"/></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

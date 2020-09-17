@@ -1,20 +1,21 @@
 import React from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import sundorbon from '../../images/Image/sundorbon.png';
 
 const Sundarban = () => {
     const history = useHistory();
     const handleSubmit = () => {
-        const url = `/sundarban`;
+        const url = `/room`;
         history.push(url);
     }
     return (
-        <div>
+        <div style={{ backgroundImage: `url(${sundorbon})`, height: '100vh', backgroundSize: '100% 100%', backgroundPosition: 'bottom'}}>
             <div>
             <div className="row">
                 <div className="col-md-4 m-5 p-5">
-                <h2 className="display-4 text-dark">SUNDARBAN</h2>
-                        <p className="text-dark">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...</p>
+                <h2 className="display-4 text-warning">SUNDARBAN</h2>
+                        <p className="text-white">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...</p>
                 </div>
                 <div className="col-md-6">
                     <Card className="m-5 p-5">
