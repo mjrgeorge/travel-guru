@@ -16,10 +16,10 @@ const Header = () => {
                         <FormControl type="text" placeholder="Search" className="ml-sm-2" />
                     </Form>
                     <Nav className="ml-auto">
-                        <Nav.Link className="mr-5" href="news">News</Nav.Link>
-                        <Nav.Link className="mr-5" href="destination">Destination</Nav.Link>
-                        <Nav.Link className="mr-5" href="blog">Blog</Nav.Link>
-                        <Nav.Link className="mr-5" href="contact">Contact</Nav.Link>
+                        <Nav.Link className="mr-5" href="#">News</Nav.Link>
+                        <Nav.Link className="mr-5" href="#">Destination</Nav.Link>
+                        <Nav.Link className="mr-5" href="#">Blog</Nav.Link>
+                        <Nav.Link className="mr-5" href="#">Contact</Nav.Link>
                     </Nav>
                         <Button className = "mr-5" variant="warning">Login</Button>
                 </Navbar.Collapse>

@@ -7,11 +7,13 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './components/home/Home';
-import Book from './components/book/Book';
+import Coxbazar from './components/coxbazar/Coxbazar';
 import Login from './components/login/Login';
 import PrivateRoute from './components/privateRoute/PrivateRoute';
 import Room from './components/room/Room';
 import NotMatch from './components/notMatch/NotMatch';
+import Sundarban from './components/sundarban/Sundarban';
+import Sreemangal from './components/location/sreemangal/Sreemangal';
 
 
 export const UserContext = createContext();
@@ -26,8 +28,14 @@ function App() {
           <Route path = "/home">
             <Home/>
           </Route>
-          <Route path = "/book">
-            <Book/>
+          <Route path = "/coxbazar">
+            <Coxbazar/>
+          </Route>
+          <Route path = "/sreemangal">
+            <Sreemangal/>
+          </Route>
+          <Route path = "/sundarban">
+            <Sundarban/>
           </Route>
           <Route path = "/login">
             <Login/>

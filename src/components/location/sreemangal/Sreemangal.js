@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const Sreemangal = () => {
     const history = useHistory();
     const handleSubmit = () => {
-        const url = `/room`;
+        const url = `/sreemangal`;
         history.push(url);
     }
     return (
