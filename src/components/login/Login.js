@@ -11,7 +11,10 @@ import { UserContext } from '../../App';
 firebase.initializeApp(firebaseConfig);
 
 const Login = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
     const [newUser, setNewUser] = useState(false);
+
     const [user, setUser] = useState({
         isSignedIn: false,
         newUser: false,
@@ -26,50 +29,41 @@ const Login = () => {
         error: '',
     });
 
-    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
     const history = useHistory();
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
+// SIGN IN With GOOGLE
+const handleGoogleSignedIn =  () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
-    const handleGoogleSignedIn =  () => {
         firebase.auth().signInWithPopup(googleProvider)
         .then(result =>{
-           console.log(result);
+            const {displayName, email} = result.user;
+            const signedInUser = {name: displayName, email};
+            setLoggedInUser(signedInUser);
+            history.replace(from);
         })
           .catch(error=>{
-              console.log(error);
+              console.log(error.message);
           });
     };
 
+    // SIGN IN With FACEBOOK
     const fbProvider = new firebase.auth.FacebookAuthProvider();
     const handleFbSignedIn = ()=>{
         firebase.auth().signInWithPopup(fbProvider)
         .then(result =>{
-            console.log(result);
+            const {displayName, email} = result.user;
+            const signedInUser = {name: displayName, email};
+            setLoggedInUser(signedInUser);
+            history.replace(from);
         })
           .catch(error=>{
-              console.log(error);
+            console.log(error.message);
           });
     };
 
-    const handleSignOut = () => {
-        firebase.auth().signOut()
-        .then(res=> {
-            const signedOutUser = {
-                isSignedIn: true,
-                name: '',
-                email: '',
-                photo: '',
-            }
-            setUser(signedOutUser);
-          })
-          .catch(error=> {
-            console.log(error);
-          });
-    };
-
+    // SIGN IN With EMAIL
     const handleBlur = (e) => {
         let isFieldValid = true;
         if(e.target.name==="email"){
@@ -88,9 +82,10 @@ const Login = () => {
     };
 
     const handleSubmit = (e) => {
+        
         if(newUser && user.firstName && user.lastName && user.email && user.password){
             firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .then(response=>{
+            .then(result=>{
                 const newUserInfo = {...user};
                 newUserInfo.error = '';
                 newUserInfo.success = true;
@@ -106,7 +101,7 @@ const Login = () => {
         }
         if(!newUser && user.email && user.password){
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
-            .then(response => {
+            .then(result => {
                 const newUserInfo = {...user};
                 newUserInfo.error = '';
                 newUserInfo.success = true;
@@ -126,7 +121,6 @@ const Login = () => {
     };
 
     return (
-
         <div>
             <Card style={{width: '500px', padding: '25px', margin: '100px auto'}}>
                 <div>

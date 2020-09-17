@@ -14,6 +14,10 @@ const Room = () => {
             facilities: `Cancellation flexibility available`,
             others: `4.9(20) $34/night $167 total`,
             img: `${room1}`,
+            location1: `Cox's Bazar`,
+            location2: `Sreemangal`,
+            location3: `Sundarban`,
+            details: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...`,
         },
         {
             id: `2`,
@@ -23,6 +27,10 @@ const Room = () => {
             facilities: `Cancellation flexibility available`,
             others: `4.9(20) $34/night $167 total`,
             img: `${room2}`,
+            location1: `Cox's Bazar`,
+            location2: `Sreemangal`,
+            location3: `Sundarban`,
+            details: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...`,
         },
         {
             id: `3`,
@@ -32,6 +40,10 @@ const Room = () => {
             facilities: `Cancellation flexibility available`,
             others: `4.9(20) $34/night $167 total`,
             img: `${room3}`,
+            location1: `Cox's Bazar`,
+            location2: `Sreemangal`,
+            location3: `Sundarban`,
+            details: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...`,
         }
     ];
     return (

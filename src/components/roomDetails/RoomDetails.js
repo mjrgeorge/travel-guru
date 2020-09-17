@@ -6,6 +6,7 @@ const RoomDetails = (props) => {
     return (
         <div className="row m-5">
             <div className="col-md-6">
+                <h5>Stay in Hotel</h5>
                 <div className="row">
                     <Card className="col-md-6">
                         <Card.Img src={img} alt="Room"/>
