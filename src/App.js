@@ -6,12 +6,13 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Home from './home/Home';
-import NotMatch from './notMatch/NotMatch';
-import Book from './book/Book';
-import Login from './login/Login';
-import Room from './room/Room';
-import PrivateRoute from './privateRoute/PrivateRoute';
+import Home from './components/home/Home';
+import Book from './components/book/Book';
+import Login from './components/login/Login';
+import PrivateRoute from './components/privateRoute/PrivateRoute';
+import Room from './components/room/Room';
+import NotMatch from './components/notMatch/NotMatch';
+
 
 export const UserContext = createContext();
 

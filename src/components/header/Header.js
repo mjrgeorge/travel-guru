@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
 import './Header.css';
-import logo from '../images/Logo.png';
-import header from '../images/Image/header.png';
-import Location from '../location/Location';
+import logo from '../../images/Logo.png';
+import header from '../../images/Image/header.png';
+import Location from '../../components/location/Location';
 
 const Header = () => {
     return (
