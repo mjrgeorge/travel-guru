@@ -20,6 +20,7 @@ const Login = () => {
         lastName: '',
         email: '',
         password: '',
+        confirmPassword: '',
         photo: '',
         success: '',
         error: '',
@@ -136,6 +137,7 @@ const Login = () => {
                             {newUser&&<Form.Control className="mb-3"  onBlur={handleBlur} name="lastName" type="text" placeholder = "Last Name" required/>}
                             <Form.Control className="mb-3"  onBlur={handleBlur} name="email" type="email" placeholder = "Email" required/>
                             <Form.Control className="mb-3"  onBlur={handleBlur} name="password" type="password" placeholder = "Password" required/>
+                            {newUser&&<Form.Control className="mb-3"  onBlur={handleBlur} name="confirmPassword" type="password" placeholder = "Confirm Password" required/>}
                             {!newUser&&
                             <div className="d-flex justify-content-between">
                                 <Form.Check type="checkbox" label="Remember Me" />
