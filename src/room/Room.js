@@ -4,8 +4,6 @@ import room1 from '../images/Image/room1.png';
 import room2 from '../images/Image/room2.png';
 import room3 from '../images/Image/room3.png';
 
-
-
 const Room = () => {
     const rooms = [
         {

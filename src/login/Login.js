@@ -5,6 +5,8 @@ import "firebase/auth";
 import firebaseConfig from './firebaseConfig';
 import { UserContext } from '../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import {faGoogle, faFacebook} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -122,7 +124,6 @@ const Login = () => {
         e.preventDefault();
     };
 
-
     return (
 
         <div>
@@ -137,6 +138,7 @@ const Login = () => {
                 <div>
                     <Form>
                         <h3>{!newUser?'Login':'Create an account'}</h3>
+                        <br/>
                             {newUser&&<Form.Control className="mb-3" onBlur={handleBlur} name="firstName" type="text" placeholder = "First Name" required/>}
                             {newUser&&<Form.Control className="mb-3"  onBlur={handleBlur} name="lastName" type="text" placeholder = "Last Name" required/>}
                             <Form.Control className="mb-3"  onBlur={handleBlur} name="email" type="email" placeholder = "Email" required/>
@@ -146,9 +148,9 @@ const Login = () => {
                                 <Form.Check type="checkbox" label="Remember Me" />
                                 <Button variant="link" >Forgot Password</Button>
                             </div>}
-
+                            <br/>
                             {<Button onClick={handleSubmit} type="submit" variant="warning" block>{!newUser?'Login':'Create an account'}</Button>}
-                            
+                            <br/>
                             {!newUser&&
                             <div className="text-center">
                             <p>Don't have an account?<Button onClick={()=>setNewUser(!newUser)} variant="link">Create an account</Button></p>
@@ -161,9 +163,15 @@ const Login = () => {
                 <div className="text-center">
                     <hr/>
                     <p>Or</p>
-                    <Button onClick={handleFbSignedIn} variant="info" block>Continue With Facebook</Button>
+                    <Button onClick={handleFbSignedIn} variant="light" block>
+                        <FontAwesomeIcon className="mr-2 text-info" icon={faFacebook} />
+                        Continue With Facebook
+                    </Button>
                     <br/>
-                    <Button onClick={handleGoogleSignedIn} variant="info" block>Continue With Google</Button>
+                    <Button onClick={handleGoogleSignedIn} variant="light" block>
+                    <FontAwesomeIcon className="mr-2 text-info" icon={faGoogle} />
+                        Continue With Google
+                    </Button>
                 </div>
             </Card>
         </div>
