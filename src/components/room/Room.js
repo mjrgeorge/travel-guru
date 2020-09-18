@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import RoomDetails from '../roomDetails/RoomDetails';
 import room1 from '../../images/Image/room1.png';
 import room2 from '../../images/Image/room2.png';
 import room3 from '../../images/Image/room3.png';
+import { UserContext } from '../../App';
 
 const Room = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const rooms = [
         {
             id: `1`,
@@ -48,6 +50,7 @@ const Room = () => {
     ];
     return (
         <div>
+          <p className="text-success ml-5 mt-5">User Email: {loggedInUser.email}</p>
             {
                 rooms.map(room =><RoomDetails room={room} key={room.id}></RoomDetails>)
             }

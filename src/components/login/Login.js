@@ -7,14 +7,11 @@ import { useHistory, useLocation } from 'react-router-dom';
 import {faGoogle, faFacebook} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { UserContext } from '../../App';
-
 firebase.initializeApp(firebaseConfig);
 
 const Login = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
     const [newUser, setNewUser] = useState(false);
-
     const [user, setUser] = useState({
         isSignedIn: false,
         newUser: false,
@@ -33,7 +30,7 @@ const Login = () => {
     const location = useLocation();
     let { from } = location.state || { from: { pathname: "/" } };
 
-// SIGN IN With GOOGLE
+// SIGN IN With GOOGLE:
 const handleGoogleSignedIn =  () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
         firebase.auth().signInWithPopup(googleProvider)
@@ -48,7 +45,7 @@ const handleGoogleSignedIn =  () => {
           });
     };
 
-    // SIGN IN With FACEBOOK
+    // SIGN IN With FACEBOOK:
     const fbProvider = new firebase.auth.FacebookAuthProvider();
     const handleFbSignedIn = ()=>{
         firebase.auth().signInWithPopup(fbProvider)
@@ -63,7 +60,7 @@ const handleGoogleSignedIn =  () => {
           });
     };
 
-    // SIGN IN With EMAIL
+    // SIGN IN With EMAIL:
     const handleBlur = (e) => {
         let isFieldValid = true;
         if(e.target.name==="email"){

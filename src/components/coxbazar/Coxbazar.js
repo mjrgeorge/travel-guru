@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
 import coxbazar from '../../images/Image/coxbazar.png';
 
-const Book = () => {
+const Coxbazar = () => {
     const history = useHistory();
     const handleSubmit = () => {
         const url = `/room`;
@@ -44,4 +45,4 @@ const Book = () => {
     );
 };
 
-export default Book;
+export default Coxbazar;
