@@ -4,6 +4,7 @@ import room1 from '../../images/Image/room1.png';
 import room2 from '../../images/Image/room2.png';
 import room3 from '../../images/Image/room3.png';
 import { UserContext } from '../../App';
+import LocationMap from '../locationMap/LocationMap';
 
 const Room = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -16,10 +17,6 @@ const Room = () => {
             facilities: `Cancellation flexibility available`,
             others: `4.9(20) $34/night $167 total`,
             img: `${room1}`,
-            location1: `Cox's Bazar`,
-            location2: `Sreemangal`,
-            location3: `Sundarban`,
-            details: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...`,
         },
         {
             id: `2`,
@@ -29,10 +26,6 @@ const Room = () => {
             facilities: `Cancellation flexibility available`,
             others: `4.9(20) $34/night $167 total`,
             img: `${room2}`,
-            location1: `Cox's Bazar`,
-            location2: `Sreemangal`,
-            location3: `Sundarban`,
-            details: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...`,
         },
         {
             id: `3`,
@@ -42,18 +35,22 @@ const Room = () => {
             facilities: `Cancellation flexibility available`,
             others: `4.9(20) $34/night $167 total`,
             img: `${room3}`,
-            location1: `Cox's Bazar`,
-            location2: `Sreemangal`,
-            location3: `Sundarban`,
-            details: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book...`,
         }
     ];
     return (
-        <div>
-          <p className="text-success ml-5 mt-5">User Email: {loggedInUser.email}</p>
-            {
-                rooms.map(room =><RoomDetails room={room} key={room.id}></RoomDetails>)
-            }
+        <div  className="pt-5 pl-5">
+          <p className="text-success">User Email: {loggedInUser.email}</p>
+          <p>Stay in Hotel</p>
+            <div className="row">
+                <div className="col-md-6">
+                    {
+                        rooms.map(room =><RoomDetails room={room} key={room.id}></RoomDetails>)
+                    }
+                </div>
+                <div className="col-md-6">
+                    <LocationMap/>
+                </div>
+            </div>
         </div>
     );
 };
