@@ -59,9 +59,10 @@ const handleGoogleSignedIn =  () => {
             console.log(error.message);
           });
     };
-
+ 
     // SIGN IN With EMAIL:
     const handleBlur = (e) => {
+        
         let isFieldValid = true;
         if(e.target.name==="email"){
             isFieldValid = /\S+@\S+\.+/.test(e.target.value);
@@ -70,7 +71,7 @@ const handleGoogleSignedIn =  () => {
             const isPasswordValid = e.target.value.length > 6;
             const passwordHasNumber = /\d{1}/.test(e.target.value);
             isFieldValid = isPasswordValid && passwordHasNumber;
-        }
+        } 
         if(isFieldValid){
             const newUserInfo = {...user};
             newUserInfo[e.target.name] = e.target.value;
@@ -79,23 +80,29 @@ const handleGoogleSignedIn =  () => {
     };
 
     const handleSubmit = (e) => {
-        
-        if(newUser && user.firstName && user.lastName && user.email && user.password){
-            firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
-            .then(result=>{
-                const newUserInfo = {...user};
-                newUserInfo.error = '';
-                newUserInfo.success = true;
-                setUser(newUserInfo);
-            })
-            .catch(error=> {
-                const newUserInfo = {...user};
-                newUserInfo.error = error.message;
-                newUserInfo.success = false;
-                setUser(newUserInfo);
-                console.log(error.message);
-              });
+        if(newUser && user.firstName && user.lastName && user.email && user.password && user.confirmPassword){
+        const { password, confirmPassword } = user;
+        if (password !== confirmPassword) {
+            alert("Passwords don't match");
+        }else{
+                firebase.auth().createUserWithEmailAndPassword(user.email, user.password)
+                .then(result=>{
+                    const newUserInfo = {...user};
+                    newUserInfo.error = '';
+                    newUserInfo.success = true;
+                    setUser(newUserInfo);
+                })
+                .catch(error=> {
+                    const newUserInfo = {...user};
+                    newUserInfo.error = error.message;
+                    newUserInfo.success = false;
+                    setUser(newUserInfo);
+                    console.log(error.message);
+                  });
+            };
         }
+
+    
         if(!newUser && user.email && user.password){
             firebase.auth().signInWithEmailAndPassword(user.email, user.password)
             .then(result => {
